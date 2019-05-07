@@ -41,7 +41,7 @@
     <type label="Inet CIDR Addr" length="0" sql="CIDR" quote="'"/>
     <type label="Geometry" length="0" sql="GEOMETRY" quote="'"/>
   </group>
-</datatypes><table x="36" y="440" name="companies">
+</datatypes><table x="85" y="502" name="companies">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -52,7 +52,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="206" y="367" name="groups">
+<table x="256" y="389" name="groups">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -67,7 +67,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="345" y="262" name="members">
+<table x="406" y="241" name="users">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -84,25 +84,34 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="groups" row="id" />
 </row>
+<row name="status" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="827" y="364" name="proposals">
+<table x="899" y="433" name="proposals">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="id_members" null="1" autoincrement="0">
+<row name="id_users" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="members" row="id" />
+<default>NULL</default><relation table="users" row="id" />
 </row>
+<row name="id_scopes" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="scopes" row="id" />
+</row>
+<row name="type" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
 <row name="description" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
 <default>NULL</default></row>
-<row name="id_targets" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="targets" row="id" />
-</row>
 <row name="status" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
 <default>NULL</default></row>
@@ -113,7 +122,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1089" y="431" name="targets">
+<table x="1157" y="606" name="scopes">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -124,7 +133,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="641" y="235" name="votes">
+<table x="746" y="246" name="votes">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -132,97 +141,38 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="proposals" row="id" />
 </row>
-<row name="id_members" null="1" autoincrement="0">
+<row name="id_users" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="members" row="id" />
+<default>NULL</default><relation table="users" row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="1422" y="354" name="ressources">
+<table x="1416" y="415" name="associated_risks">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="name" null="1" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>NULL</default></row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="1087" y="299" name="requirements">
-<row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="level" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="id_ressources" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="ressources" row="id" />
-</row>
-<row name="id_proposals" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="proposals" row="id" />
-</row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="822" y="714" name="risks">
-<row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="id_members" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="members" row="id" />
-</row>
 <row name="description" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
 <default>NULL</default></row>
-<row name="id_scopes" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="scopes" row="id" />
-</row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="1096" y="668" name="assessments">
-<row name="id" null="1" autoincrement="1">
+<row name="frequency" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="level" null="1" autoincrement="0">
+<row name="impact" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="id_risks" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="risks" row="id" />
-</row>
-<row name="id_criterias" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="criterias" row="id" />
-</row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="1296" y="735" name="criterias">
-<row name="id" null="1" autoincrement="1">
+<row name="detection" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="name" null="1" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>NULL</default></row>
-<row name="wheighting" null="1" autoincrement="0">
+<row name="rating" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="867" y="563" name="assignements">
+<table x="1150" y="452" name="assignements">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -230,42 +180,15 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="proposals" row="id" />
 </row>
-<row name="id_risks" null="1" autoincrement="0">
+<row name="id_associated_risks" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="risks" row="id" />
+<default>NULL</default><relation table="associated_risks" row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="826" y="75" name="improvements">
-<row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="id_members" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="members" row="id" />
-</row>
-<row name="id_proposals" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="proposals" row="id" />
-</row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="1101" y="789" name="scopes">
-<row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="name" null="1" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>NULL</default></row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="531" y="72" name="teams">
+<table x="898" y="36" name="milestones">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -273,48 +196,48 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="improvements" row="id" />
 </row>
-<row name="id_members" null="1" autoincrement="0">
+<row name="id_users" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="members" row="id" />
+<default>NULL</default><relation table="users" row="id" />
 </row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="1322" y="145" name="milesones">
-<row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="name" null="1" autoincrement="0">
+<row name="description" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
 <default>NULL</default></row>
 <row name="priority" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="new field" null="1" autoincrement="0">
+<row name="deadline" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="progression" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="status" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="1093" y="101" name="steps_trackers">
+<table x="1198" y="70" name="improvements">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="id_improvements" null="1" autoincrement="0">
+<row name="id_proposals" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="improvements" row="id" />
+<default>NULL</default><relation table="proposals" row="id" />
 </row>
-<row name="id_milesones" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="milesones" row="id" />
-</row>
-<row name="progression" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
 <default>NULL</default></row>
 <row name="deadline" null="1" autoincrement="0">
 <datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="progression" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="status" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
