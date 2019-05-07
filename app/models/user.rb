@@ -6,5 +6,6 @@ class User < ApplicationRecord
 
   belongs_to :group
   accepts_nested_attributes_for :group
+  has_many :proposals, dependent: :destroy
 
 end
